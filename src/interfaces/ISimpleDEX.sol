@@ -36,4 +36,6 @@ interface ISimpleDEX {
     function getTokenB() external view returns (address);
 
     function getExchangeRate() external view returns (uint256);
+
+    function getTokenBalance() external view returns (uint256);
 }

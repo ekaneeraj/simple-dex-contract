@@ -28,6 +28,8 @@ contract SimpleDEX {
     /**
      * Errors
      */
+    error SimpleDEX__TokenAddressMustNotBeZero();
+    error SimpleDEX__TokenAddressMustBeDifferent();
     error SimpleDEX__AmountMustBeMoreThanZero();
     error SimpleDEX__InsufficientTokenBalance(address token);
     error SimpleDEX__TransferFailed();
@@ -66,6 +68,16 @@ contract SimpleDEX {
      * @param _exchangeRate The initial exchange rate between the two tokens
      */
     constructor(address _tokenA, address _tokenB, uint256 _exchangeRate) {
+        // Check if token addresses are different
+        if (_tokenA == _tokenB) {
+            revert SimpleDEX__TokenAddressMustBeDifferent();
+        }
+
+        // Check if token addresses are not zero
+        if (_tokenA == address(0) || _tokenB == address(0)) {
+            revert SimpleDEX__TokenAddressMustNotBeZero();
+        }
+
         s_tokenA = _tokenA;
         s_tokenB = _tokenB;
         s_exchangeRate = _exchangeRate;
@@ -82,7 +94,7 @@ contract SimpleDEX {
      * @param _newRate New exchange rate to be set
      */
     function setExchangeRate(uint256 _newRate) public _onlyOwner {
-        if (_newRate != 0) {
+        if (_newRate <= 0) {
             revert SimpleDEX__ValueMustBeMoreThanZero();
         }
         uint256 oldRate = s_exchangeRate;
@@ -191,5 +203,9 @@ contract SimpleDEX {
 
     function getExchangeRate() external view returns (uint256) {
         return s_exchangeRate;
+    }
+
+    function getTokenBalance(address token) external view returns (uint256) {
+        return IERC20(token).balanceOf(address(this));
     }
 }

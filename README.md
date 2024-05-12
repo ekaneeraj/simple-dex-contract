@@ -1,8 +1,14 @@
 # Getting Started
 
 ## Deployed contract address:
-1. Address: 
-2. Explorer link: [Link](https://sepolia.etherscan.io/address/)
+1. SimpleDEX Address: 0x4787eC0e884B2622e87E8b6639f14455785A5ca8
+2. SimpleDEX Explorer link: [Link](https://sepolia.etherscan.io/address/0x4787eC0e884B2622e87E8b6639f14455785A5ca8#code)
+
+3. TokenA Address: 0x01B7A15d6Cb0A1f7C62B83a18777534B7774DD54
+4. TokenA Explorer link: [Link](https://sepolia.etherscan.io/address/0x01B7A15d6Cb0A1f7C62B83a18777534B7774DD54#code)
+
+5. TokenB Address: 0x75EC5DE62A9bD814a7C13519Dbd05D9D434dAEFA
+6. TokenB Explorer link: [Link](https://sepolia.etherscan.io/address/0x75EC5DE62A9bD814a7C13519Dbd05D9D434dAEFA#code)
 
 ## Requirements
 
@@ -25,7 +31,7 @@ forge build
 ## Deploy:
 
 ```
-<!-- TODO -->
+	forge script script/DeploySimpleDEX.s.sol:DeploySimpleDEX
 ```
 
 ## Testing
@@ -94,14 +100,14 @@ Head over to [faucets.chain.link](https://faucets.chain.link/) and get some test
 3. Deploy
 
 ```
-forge script script/Deploy.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY
+forge script script/DeploySimpleDEX.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY
 ```
 
 or
 
  deploy using keystore
 ```bash
-forge script script/Deploy.s.sol --rpc-url $SEPOLIA_RPC_URL --account defaultKey --sender <Wallet Address> --broadcast`
+forge script script/DeploySimpleDEX.s.sol --rpc-url $SEPOLIA_RPC_URL --account defaultKey --sender <Wallet Address> --broadcast`
 ```
 
 ## Estimate gas
